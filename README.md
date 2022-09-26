@@ -4,4 +4,4 @@
 
 - ![Screen 1](https://github.com/lengrab/FlappyBird/raw/main/Assets/Screens/1.PNG)
 - ![Screen 2](https://github.com/lengrab/FlappyBird/raw/main/Assets/Screens/2.PNG)
-- [![Video 1]()]({https://github.com/lengrab/FlappyBird/raw/main/Assets/Screens/movie_002.mp4} "Link Title")
+- ![Video 1](https://github.com/lengrab/FlappyBird/raw/main/Assets/Screens/movie_002.mp4)
