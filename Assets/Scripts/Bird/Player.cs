@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IResettable
 {
     private const string BestScoreHash = "BestScore";
     private const int NullScore = 0;

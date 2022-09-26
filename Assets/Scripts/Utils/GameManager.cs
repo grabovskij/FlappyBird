@@ -1,5 +1,5 @@
+using System.Collections.Generic;
 using UnityEngine;
-
 
 public class GameManager : MonoBehaviour
 {
@@ -16,60 +16,48 @@ public class GameManager : MonoBehaviour
 
     [Header("Реклама и голосование:")] 
     [SerializeField] private string _voteLink;
+    
     [Header("Игрок:")]
     [SerializeField] private Player _player; 
     [SerializeField] private BirdMover _birdMover; 
     [SerializeField] private InputHandler _inputHandler;
+    
     [Header("Окружение:")]
     [SerializeField] private TubeSpawner _spawner;
     [SerializeField] private BackgroundMover _backgroundMover;
     [SerializeField] private BackgroundMover _groundMover;
 
     public string Votelink => _voteLink;
+
+    private static void DeactivateCanvas(List<GameObject> canvasList)
+    {
+        foreach (GameObject canvas in canvasList)
+        {
+            if (canvas.activeSelf)
+            {
+                canvas.SetActive(false);
+            }
+        }
+    }
+
+    private static void ResetGame(List<IResettable> resettableList)
+    {
+        foreach (IResettable item in resettableList)
+        {
+            item.Reset();
+        }
+    }
     
     public void OnRestart()
     {
-        #region DeactivateScreens
-        if (_startScreen.activeSelf)
-        {
-            _startScreen.SetActive(false);
-        }
-        
-        if (_pauseScreen.activeSelf)
-        {
-            _pauseScreen.SetActive(false);
-        }
-        
-        if (_gameOverScreen.activeSelf)
-        {
-            _gameOverScreen.SetActive(false);
-        }
-        #endregion
-
+        DeactivateCanvas(new List<GameObject>() {_startScreen, _pauseScreen, _gameOverScreen});
         Reset();
         _gameScreen.SetActive(true);
         _inputHandler.gameObject.SetActive(true);
     }
     public void OnStart()
     {
-        
-        #region DeactivateScreens
-        if (_startScreen.activeSelf)
-        {
-            _startScreen.SetActive(false);
-        }
-        
-        if (_pauseScreen.activeSelf)
-        {
-            _pauseScreen.SetActive(false);
-        }
-        
-        if (_gameOverScreen.activeSelf)
-        {
-            _gameOverScreen.SetActive(false);
-        }
-        #endregion
-        
+        DeactivateCanvas(new List<GameObject>() {_startScreen, _pauseScreen, _gameOverScreen});
         _gameScreen.SetActive(true);
         _inputHandler.gameObject.SetActive(true);
         _birdMover.StartMove();
@@ -98,12 +86,13 @@ public class GameManager : MonoBehaviour
 
     private void Reset()
     {
-        _player.Reset();
-        _spawner.Reset();
-        _groundMover.ResetPosition();
-        _backgroundMover.ResetPosition();
-        _birdMover.Reset();
+        ResetGame(new List<IResettable>() {_player, _spawner, _groundMover, _backgroundMover, _birdMover});
         _birdMover.StartMove();
         _spawner.Spawn(3);
     }
+}
+
+public interface IResettable
+{
+    public void Reset();
 }

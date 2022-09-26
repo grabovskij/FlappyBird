@@ -5,13 +5,14 @@ using UnityEngine.UI;
 public class MedalView : MonoBehaviour
 {
     [SerializeField] private Player _player;
-    private Image _image;
     [SerializeField] private int _scoreToGold = 100;
     [SerializeField] private int _scoreToSilver = 50;
     [SerializeField] private int _scoreToBronse = 20;
     [SerializeField] private Sprite _goldMedal;
     [SerializeField] private Sprite _silverMedal;
     [SerializeField] private Sprite _bronseMedal;
+    
+    private Image _image;
 
     private void Awake()
     {

@@ -1,11 +1,10 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Bird))]
 [RequireComponent(typeof(Player))]
 
-public class BirdMover : MonoBehaviour
+public class BirdMover : MonoBehaviour, IResettable
 {
     [SerializeField] private float _speed = 3;
     [SerializeField] private float _tapForce = 10;

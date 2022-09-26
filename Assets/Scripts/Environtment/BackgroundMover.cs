@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BackgroundMover : MonoBehaviour
+public class BackgroundMover : MonoBehaviour, IResettable
 {
     [SerializeField] private float _shift = 10;
     [SerializeField] private Transform _part1Transform;
@@ -10,7 +10,7 @@ public class BackgroundMover : MonoBehaviour
     private Vector3 _firstStartPosition;
     private Vector3 _secondStartPosition;
 
-    public void ResetPosition()
+    public void Reset()
     {
          _part1Transform.position = _firstStartPosition;
          _part2Transform.position = _secondStartPosition;

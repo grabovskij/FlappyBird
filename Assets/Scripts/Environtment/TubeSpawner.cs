@@ -1,7 +1,7 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class TubeSpawner : MonoBehaviour
+public class TubeSpawner : MonoBehaviour, IResettable
 {
     [SerializeField] private int _startPosition = 3;
     [SerializeField] private int _tubeDistance = 3;

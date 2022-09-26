@@ -6,6 +6,7 @@ public class BirdCollisionHandler : MonoBehaviour
     [SerializeField] private BirdMover _mover;
     [SerializeField] private UnityEvent _enteredOnSafeZone;
     [SerializeField] private UnityEvent _died;
+    
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.TryGetComponent<SafeZone>(out SafeZone saveZone))
